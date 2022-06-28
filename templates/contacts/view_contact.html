@@ -8,6 +8,14 @@
   <div class="w-33 pa3">
     <h2>{{ contact.name }}</h2>
     <h3></h3>
+    <form action="{% url 'add_note' pk=contact.pk %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+          <button>Add Note</button>
+
+        </div>
+      </form>
         {% for note in contact.notes.all %}
         <ul>
             <i>
