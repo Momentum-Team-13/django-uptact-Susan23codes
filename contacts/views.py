@@ -7,7 +7,7 @@ from .forms import ContactForm
 def list_contacts(request):
     contacts = Contact.objects.all()
     return render(request, "contacts/list_contacts.html",
-                  {"contacts": contacts})
+                  {"contacts": contacts, })
 
 
 def add_contact(request):
@@ -36,6 +36,11 @@ def edit_contact(request, pk):
         "form": form,
         "contact": contact
     })
+
+def view_contact(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    return render(request, "contacts/view_contact.html", {'contact': contact})
+
 
 
 def delete_contact(request, pk):
